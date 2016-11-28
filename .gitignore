@@ -1,0 +1,64 @@
+# Clion IDE files
+.idea/
+
+# asm_test binary
+asm_test/test
+
+# Gdb history
+.gdb_history
+
+# Doxygen generated docs
+docs/html
+
+# build folder
+build/
+.idea/
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+#Visual Studio IDE files
+*.suo
+*.sln
+*.db
+*.opendb
+*.vcxproj
+*.filters
+*.pdb
+*.idb
+*.log
+/Debug
+*.user
+*.tlog
+
+# Profiler files
+callgraph*
+callgrind*
+
