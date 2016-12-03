@@ -17,19 +17,25 @@ void DexParser::_parse()
 
 DexASTExpr* DexParser::_parse_tokens(LexOutput tokens)
 {
+    DexASTExpr* result = nullptr;
+
     // Base case, a single number!
     if (tokens.size() == 1 && tokens[0].token_type == DexTokenType::NUM) {
         return new DexASTExpr(tokens[0].token_value);
     }
 
     // The order in which the _parse_x functions are called determines the order of operations
-    DexASTExpr* result = this->_parse_mult_div(tokens);
+    result = this->_parse_add_sub(tokens);
     if (result){
         return result;
     }
-    else {
-        return nullptr;
+    result = this->_parse_mult_div(tokens);
+    if (result){
+        return result;
     }
+
+    // If we get here, a nullptr is returned and the parser did not recognise anything
+    return nullptr;
 }
 
 vector<vector<DexToken>> DexParser::split(vector<DexToken>& tokens, vector<DexToken>::iterator to_split)
@@ -64,6 +70,27 @@ DexASTExpr* DexParser::_parse_mult_div(vector<DexToken> tokens)
     }
 
     // Hey, we've found a mult or div
+    auto split_result = this->split(tokens, found_token);
+    DexASTExpr* left = this->_parse_tokens(split_result[0]);
+    DexASTExpr* right = this->_parse_tokens(split_result[1]);
+
+    return new DexASTExpr(token_to_expr_type[(*found_token).token_type], left, right);
+}
+
+DexASTExpr* DexParser::_parse_add_sub(vector<DexToken> tokens)
+{
+    LexOutput::iterator found_token = std::find_if(
+        tokens.begin(), tokens.end(),
+        [](DexToken tok){
+            return tok.token_type == DexTokenType::OP_ADD or tok.token_type == DexTokenType::OP_SUBSTRACT;
+        }
+    );
+
+    if (found_token == tokens.end()) {
+        return nullptr;
+    }
+
+    // Hey, we've found an add or substract
     auto split_result = this->split(tokens, found_token);
     DexASTExpr* left = this->_parse_tokens(split_result[0]);
     DexASTExpr* right = this->_parse_tokens(split_result[1]);

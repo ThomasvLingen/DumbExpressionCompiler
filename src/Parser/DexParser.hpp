@@ -23,6 +23,7 @@ private:
     DexASTExpr* _parse_tokens(vector<DexToken> tokens);
 
     DexASTExpr* _parse_mult_div(vector<DexToken> tokens);
+    DexASTExpr* _parse_add_sub(vector<DexToken> tokens);
 
     vector<vector<DexToken>> split(vector<DexToken>& tokens, vector<DexToken>::iterator to_split);
 };
