@@ -101,7 +101,7 @@ bool DexLexer::_lex_operator_multiply()
 bool DexLexer::_lex_operator_divide()
 {
     if (*this->_current_char == '/') {
-        this->_add_token(DexToken {DexTokenType::OP_MULTIPLY});
+        this->_add_token(DexToken {DexTokenType::OP_DIVIDE});
         this->_consume_character();
 
         return true;
