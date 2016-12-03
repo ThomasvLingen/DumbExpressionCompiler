@@ -8,6 +8,18 @@
 #include <Lexer/DexTokenType.hpp>
 
 struct DexToken {
+    DexToken(DexTokenType type, int value)
+    : token_type(type)
+    , token_value(value)
+    {
+    }
+
+    DexToken(DexTokenType type)
+    : token_type(type)
+    , token_value(-1)
+    {
+    }
+
     DexTokenType token_type;
     int token_value;
 };

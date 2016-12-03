@@ -15,6 +15,7 @@ void DexLexer::_lex()
 {
     while (this->_current_char != this->_input.end()) {
         if (this->_lex_number()) {}
+        else if (this->_lex_operator_add()) {}
         else {
             // We reach this statement when no lex functions could lex the current token
             // We just skip the token in that case
@@ -33,6 +34,11 @@ void DexLexer::_consume_character()
     this->_current_char++;
 }
 
+void DexLexer::_add_token(DexToken to_add)
+{
+    this->_output.push_back(to_add);
+}
+
 bool DexLexer::_lex_number()
 {
     // Are we dealing with a number?
@@ -46,7 +52,19 @@ bool DexLexer::_lex_number()
             this->_consume_character();
         }
 
-        this->_output.push_back(DexToken {DexTokenType::NUM, std::stoi(number_string)});
+        this->_add_token(DexToken {DexTokenType::NUM, std::stoi(number_string)});
+        return true;
+    }
+
+    return false;
+}
+
+bool DexLexer::_lex_operator_add()
+{
+    if (*this->_current_char == '+') {
+        this->_add_token(DexToken {DexTokenType::OP_ADD});
+        this->_consume_character();
+
         return true;
     }
 

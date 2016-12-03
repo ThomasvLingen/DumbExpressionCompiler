@@ -25,9 +25,12 @@ int main(int argc, char** argv)
     // Print output
     for (auto tok : output) {
         if (tok.token_type == DexTokenType::NUM) {
-            cout << "<Number>";
+            cout << "<Number>" <<  tok.token_value;
         }
-        cout << tok.token_value << endl;
+        else if (tok.token_type == DexTokenType::OP_ADD) {
+            cout << "<ADD>";
+        }
+        cout << endl;
     }
 }
 

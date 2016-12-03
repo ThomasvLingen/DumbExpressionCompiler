@@ -28,9 +28,14 @@ private:
 
     void _lex();
     void _consume_character();
+    void _add_token(DexToken to_add);
 
     // Specific lex functions
     bool _lex_number();
+    bool _lex_operator_add();
+    bool _lex_operator_substract();
+    bool _lex_operator_multiply();
+    bool _lex_operator_divide();
 };
 
 
