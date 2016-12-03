@@ -52,7 +52,7 @@ run : $(EXEC)
 	$(EXEC)
 
 debug: $(EXEC)
-	gdb $(EXEC)
+	gdb -tui $(EXEC)
 
 memory_leaks: $(EXEC)
 	valgrind --tool=memcheck --leak-check=full $(EXEC)
