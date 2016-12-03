@@ -5,6 +5,7 @@
 #ifndef DUMBEXPRESSIONCOMPILER_DEXTOKENS_HPP
 #define DUMBEXPRESSIONCOMPILER_DEXTOKENS_HPP
 
+#include <string>
 
 enum class DexTokenType
 {
@@ -15,5 +16,6 @@ enum class DexTokenType
     OP_DIVIDE
 };
 
+extern std::string DexTokenTypeNames[];
 
 #endif //DUMBEXPRESSIONCOMPILER_DEXTOKENS_HPP

@@ -6,6 +6,10 @@
 #define DUMBEXPRESSIONCOMPILER_DEXTOKEN_HPP
 
 #include <Lexer/DexTokenType.hpp>
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 struct DexToken {
     DexToken(DexTokenType type, int value)
@@ -22,6 +26,8 @@ struct DexToken {
 
     DexTokenType token_type;
     int token_value;
+
+    void print();
 };
 
 

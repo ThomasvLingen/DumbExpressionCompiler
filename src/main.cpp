@@ -1,7 +1,11 @@
 #include <iostream>
 #include <Lexer/DexLexer.hpp>
+#include <Parser/DexParser.hpp>
 
 void print_help();
+
+void print_lex_output(LexOutput& output);
+void print_parse_output(DexASTExpr* ast_root);
 
 using std::cout;
 using std::endl;
@@ -21,29 +25,31 @@ int main(int argc, char** argv)
     // Lex input
     DexLexer lexer(to_lex);
     LexOutput output = lexer.get_lexed_output();
+    print_lex_output(output);
 
-    // Print output
-    for (auto tok : output) {
-        if (tok.token_type == DexTokenType::NUM) {
-            cout << "<NUMBER>" <<  tok.token_value;
-        }
-        else if (tok.token_type == DexTokenType::OP_ADD) {
-            cout << "<ADD>";
-        }
-        else if (tok.token_type == DexTokenType::OP_SUBSTRACT) {
-            cout << "<SUBSTRACT>";
-        }
-        else if (tok.token_type == DexTokenType::OP_MULTIPLY) {
-            cout << "<MULTIPLY>";
-        }
-        else if (tok.token_type == DexTokenType::OP_DIVIDE) {
-            cout << "<DIVIDE>";
-        }
-        cout << endl;
-    }
+    // Parse lex output (build AST)
+    DexParser parser(output);
+    DexASTExpr* ast = parser.get_parsed_output();
+    print_parse_output(ast);
 }
 
 void print_help()
 {
     cout << "Usage: dexc [expression]" << endl;
+}
+
+void print_lex_output(LexOutput& output)
+{
+    cout << "Lex output: " << endl;
+    for (auto tok : output) {
+        tok.print();
+    }
+    cout << endl;
+}
+
+void print_parse_output(DexASTExpr* ast_root)
+{
+    cout << "Parser output:" << endl;
+    ast_root->print();
+    cout << endl;
 }

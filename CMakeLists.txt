@@ -8,7 +8,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(SOURCE_FILES
     src/main.cpp
         src/Lexer/DexLexer.cpp src/Lexer/DexLexer.hpp
-        src/Lexer/DexTokenType.hpp
-        src/Lexer/DexToken.cpp src/Lexer/DexToken.hpp)
+        src/Lexer/DexTokenType.hpp src/Lexer/DexTokenType.cpp
+        src/Lexer/DexToken.cpp src/Lexer/DexToken.hpp
+        src/Parser/DexASTExpr.cpp src/Parser/DexASTExpr.hpp
+        src/Parser/DexASTExprType.cpp src/Parser/DexASTExprType.hpp
+        src/Parser/DexParser.cpp src/Parser/DexParser.hpp)
 
 add_executable(DumbExpressionCompiler ${SOURCE_FILES})
