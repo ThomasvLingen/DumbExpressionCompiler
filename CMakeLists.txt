@@ -15,3 +15,7 @@ set(SOURCE_FILES
         src/Parser/DexParser.cpp src/Parser/DexParser.hpp)
 
 add_executable(DumbExpressionCompiler ${SOURCE_FILES})
+
+add_custom_target(DumbExpressionCompilerMakefile
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        COMMAND make)
