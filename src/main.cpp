@@ -25,10 +25,19 @@ int main(int argc, char** argv)
     // Print output
     for (auto tok : output) {
         if (tok.token_type == DexTokenType::NUM) {
-            cout << "<Number>" <<  tok.token_value;
+            cout << "<NUMBER>" <<  tok.token_value;
         }
         else if (tok.token_type == DexTokenType::OP_ADD) {
             cout << "<ADD>";
+        }
+        else if (tok.token_type == DexTokenType::OP_SUBSTRACT) {
+            cout << "<SUBSTRACT>";
+        }
+        else if (tok.token_type == DexTokenType::OP_MULTIPLY) {
+            cout << "<MULTIPLY>";
+        }
+        else if (tok.token_type == DexTokenType::OP_DIVIDE) {
+            cout << "<DIVIDE>";
         }
         cout << endl;
     }

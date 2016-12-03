@@ -16,6 +16,9 @@ void DexLexer::_lex()
     while (this->_current_char != this->_input.end()) {
         if (this->_lex_number()) {}
         else if (this->_lex_operator_add()) {}
+        else if (this->_lex_operator_substract()) {}
+        else if (this->_lex_operator_multiply()) {}
+        else if (this->_lex_operator_divide()) {}
         else {
             // We reach this statement when no lex functions could lex the current token
             // We just skip the token in that case
@@ -63,6 +66,42 @@ bool DexLexer::_lex_operator_add()
 {
     if (*this->_current_char == '+') {
         this->_add_token(DexToken {DexTokenType::OP_ADD});
+        this->_consume_character();
+
+        return true;
+    }
+
+    return false;
+}
+
+bool DexLexer::_lex_operator_substract()
+{
+    if (*this->_current_char == '-') {
+        this->_add_token(DexToken {DexTokenType::OP_SUBSTRACT});
+        this->_consume_character();
+
+        return true;
+    }
+
+    return false;
+}
+
+bool DexLexer::_lex_operator_multiply()
+{
+    if (*this->_current_char == '*') {
+        this->_add_token(DexToken {DexTokenType::OP_MULTIPLY});
+        this->_consume_character();
+
+        return true;
+    }
+
+    return false;
+}
+
+bool DexLexer::_lex_operator_divide()
+{
+    if (*this->_current_char == '/') {
+        this->_add_token(DexToken {DexTokenType::OP_MULTIPLY});
         this->_consume_character();
 
         return true;
