@@ -12,7 +12,9 @@ set(SOURCE_FILES
         src/Lexer/DexToken.cpp src/Lexer/DexToken.hpp
         src/Parser/DexASTExpr.cpp src/Parser/DexASTExpr.hpp
         src/Parser/DexASTExprType.cpp src/Parser/DexASTExprType.hpp
-        src/Parser/DexParser.cpp src/Parser/DexParser.hpp)
+        src/Parser/DexParser.cpp src/Parser/DexParser.hpp
+        src/AsmWriter/DexAsmWriter.cpp src/AsmWriter/DexAsmWriter.hpp
+        src/CodeGenerator/DexCodeGenerator.cpp src/CodeGenerator/DexCodeGenerator.hpp)
 
 add_executable(DumbExpressionCompiler ${SOURCE_FILES})
 

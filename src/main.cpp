@@ -1,6 +1,7 @@
 #include <iostream>
 #include <Lexer/DexLexer.hpp>
 #include <Parser/DexParser.hpp>
+#include <CodeGenerator/DexCodeGenerator.hpp>
 
 void print_help();
 
@@ -30,6 +31,10 @@ int main(int argc, char** argv)
     DexParser parser(output);
     DexASTExpr* ast = parser.get_parsed_output();
     print_parse_output(ast);
+
+    // Generate code (write assembly file)
+    DexCodeGenerator code_generator(ast);
+    code_generator.generate_code();
 }
 
 void print_help()
