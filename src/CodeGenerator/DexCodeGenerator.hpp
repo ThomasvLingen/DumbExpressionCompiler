@@ -16,6 +16,18 @@ public:
 private:
     DexASTExpr* _ast;
     DexAsmWriter _code;
+
+    void _traverse_node(DexASTExpr* node);
+
+    bool _traverse_num(DexASTExpr* node);
+    void _generate_num(DexASTExpr* node);
+
+    bool _traverse_operator(DexASTExpr* node);
+    void _generate_operator(DexASTExpr* node);
+    void _generate_add(DexASTExpr* node);
+    void _generate_sub(DexASTExpr* node);
+    void _generate_mul(DexASTExpr* node);
+    void _generate_div(DexASTExpr* node);
 };
 
 
