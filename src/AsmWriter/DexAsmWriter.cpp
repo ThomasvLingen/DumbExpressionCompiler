@@ -21,9 +21,9 @@ void DexAsmWriter::write_assembly_file()
 void DexAsmWriter::_write_text(ofstream& out_file)
 {
     out_file << std::endl << ".section .text" << std::endl;
-    out_file << ".globl _start" << std::endl;
+    out_file << ".globl main" << std::endl;
     out_file << std::endl;
-    out_file << "_start:" << std::endl;
+    out_file << "main:" << std::endl;
 
     for (string line : this->_text_section) {
         out_file << "    " << line << std::endl;

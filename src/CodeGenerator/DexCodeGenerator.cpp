@@ -15,9 +15,13 @@ void DexCodeGenerator::generate_code()
 {
     this->_traverse_node(this->_ast);
 
-    // Add code to put result in status code (return value) of program
+    // Add code to print result through a printf call
+    this->_code.add_line(DexAsmLineType::DATA, "format: .string \"Result: %d\\n\"");
+    // Result is still on stack, so we just have to push our format
+    this->_code.add_line(DexAsmLineType::TEXT, "PUSH OFFSET format");
+    this->_code.add_line(DexAsmLineType::TEXT, "call printf");
     this->_code.add_line(DexAsmLineType::TEXT, "MOV EAX, 1 # sys_exit call");
-    this->_code.add_line(DexAsmLineType::TEXT, "POP EBX    # put result in EBX (status_code)");
+    this->_code.add_line(DexAsmLineType::TEXT, "MOV EBX, 1 # put result in EBX (status_code)");
     this->_code.add_line(DexAsmLineType::TEXT, "INT 0x80   # interrupt");
 
     this->_code.write_assembly_file();

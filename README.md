@@ -18,15 +18,13 @@ dexc EXPRESSION
 ``` 
 
 The generated x86 assembly stored in the `out.asm` file can be assembled into
-an actual program on x86_64 machines with `gcc`:
+an actual program on x86_64 machines with `gcc` if you have an i386 libc set up:
 ```
-gcc -m32 -x assembler -nostdlib out.asm -o out
+gcc -m32 -x assembler out.asm -o out
 ```
 
-When run, this program returns the result of the expression. The result can be
-checked in `bash` like this:
-```
-./out
-echo $?
-```
+When run, this program prints the result of the expression.
+
+The reason an i386 libc is needed is because the compiled program makes a call
+to `printf` in order to print the result. This is the only libc call made.
 
