@@ -101,6 +101,8 @@ void DexCodeGenerator::_generate_add(DexASTExpr* node)
 
 void DexCodeGenerator::_generate_sub(DexASTExpr* node)
 {
+    std::cout << "[CODEGEN] SUB" << std::endl;
+
     this->_code.add_line(DexAsmLineType::TEXT, "POP EAX");
     this->_code.add_line(DexAsmLineType::TEXT, "POP EBX");
     this->_code.add_line(DexAsmLineType::TEXT, "SUB EAX, EBX");
@@ -109,6 +111,8 @@ void DexCodeGenerator::_generate_sub(DexASTExpr* node)
 
 void DexCodeGenerator::_generate_mul(DexASTExpr* node)
 {
+    std::cout << "[CODEGEN] MUL" << std::endl;
+
     this->_code.add_line(DexAsmLineType::TEXT, "POP EAX");
     this->_code.add_line(DexAsmLineType::TEXT, "POP EBX");
     this->_code.add_line(DexAsmLineType::TEXT, "IMUL EAX, EBX");
@@ -117,6 +121,8 @@ void DexCodeGenerator::_generate_mul(DexASTExpr* node)
 
 void DexCodeGenerator::_generate_div(DexASTExpr* node)
 {
+    std::cout << "[CODEGEN] DIV" << std::endl;
+
     this->_code.add_line(DexAsmLineType::TEXT, "POP EAX");
     this->_code.add_line(DexAsmLineType::TEXT, "POP EBX");
     this->_code.add_line(DexAsmLineType::TEXT, "IDIV EAX, EBX");
