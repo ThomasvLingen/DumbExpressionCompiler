@@ -42,9 +42,6 @@ $(EXEC) : $(OBJ_FILES)
 	@echo LD $@
 	$(SILENT) $(LD) $(COMPILER_FLAGS) $(OBJ_FILES) $(LINKER_FLAGS) $(LIBS) -o $(EXEC)
 	@echo
-	@echo "Moving resources to build"
-	cp -r $(RES_PATH) $(BUILD_PATH)
-	@echo
 
 all : $(EXEC)
 
