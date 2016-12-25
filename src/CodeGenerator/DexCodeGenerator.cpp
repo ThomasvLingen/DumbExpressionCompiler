@@ -123,8 +123,11 @@ void DexCodeGenerator::_generate_div(DexASTExpr* node)
 {
     std::cout << "[CODEGEN] DIV" << std::endl;
 
-    this->_code.add_line(DexAsmLineType::TEXT, "POP EAX");
+    // IDIV divides EDX:EAX by the operand
+    // So since the stack looks like [numerator divident] we first pop EBX and then EAX
+    // Then IDIV by EBX (divident)
     this->_code.add_line(DexAsmLineType::TEXT, "POP EBX");
-    this->_code.add_line(DexAsmLineType::TEXT, "IDIV EAX, EBX");
+    this->_code.add_line(DexAsmLineType::TEXT, "POP EAX");
+    this->_code.add_line(DexAsmLineType::TEXT, "IDIV EBX");
     this->_code.add_line(DexAsmLineType::TEXT, "PUSH EAX");
 }
