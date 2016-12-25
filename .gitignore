@@ -1,8 +1,8 @@
 # Clion IDE files
 .idea/
 
-# asm_test binary
-asm_test/test
+# asm_test
+asm_test/
 
 # Gdb history
 .gdb_history
