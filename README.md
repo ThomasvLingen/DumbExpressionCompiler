@@ -9,6 +9,7 @@ precedence:
 * *
 * /
 
+Negative numbers are currently not supported.
 The result of the expression is always unsigned. We don't do decimals.
 
 ### Usage
